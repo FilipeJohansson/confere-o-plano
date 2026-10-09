@@ -19,7 +19,7 @@ test('responde o quiz e vê o resultado com citações', async ({ page }, info) 
   // As respostas não ficam na URL (nem no histórico do navegador).
   await expect(page).toHaveURL(/\/resultado\/$/);
   await expect(page.getByRole('heading', { level: 1 })).toContainText(/mais próximas do plano|empatadas/);
-  await expect(page.getByText(`${total - 1} afirmações respondidas (1 pulada)`)).toBeVisible();
+  await expect(page.getByText(`${total - 1} afirmações respondidas (1 pulada)`, { exact: true })).toBeVisible();
 
   // Toda citação aponta para o PDF oficial do TSE na página certa.
   const links = page.locator('a[href*="tse.jus.br"][href*="#page="]');
@@ -79,20 +79,22 @@ test('tema claro por padrão, mesmo com o sistema em escuro; a escolha de escuro
   await page.emulateMedia({ colorScheme: 'dark' });
   await page.goto('/');
   const fundo = () => page.evaluate(() => getComputedStyle(document.body).backgroundColor);
-  expect(await fundo()).toBe('rgb(255, 255, 255)');
+  // Mesmo com o sistema em escuro, a página abre no tema claro.
+  await expect(page.locator('html')).not.toHaveAttribute('data-theme', 'dark');
+  const claro = await fundo();
 
   const botao = page.getByRole('button', { name: 'Tema escuro' });
   await temaPronto(page);
   await botao.click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-  expect(await fundo()).not.toBe('rgb(255, 255, 255)');
+  expect(await fundo()).not.toBe(claro);
 
   await page.goto('/quiz/');
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await temaPronto(page);
   await expect(page.getByRole('button', { name: 'Tema escuro' })).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', { name: 'Tema escuro' }).click();
-  expect(await fundo()).toBe('rgb(255, 255, 255)');
+  expect(await fundo()).toBe(claro);
 });
 
 test('rodapé fica no fim da tela em página curta', async ({ page }) => {
@@ -202,4 +204,25 @@ test('robots.txt e sitemap.xml listam só as páginas indexáveis', async ({ req
   const sitemap = await (await request.get('/sitemap.xml')).text();
   for (const p of ['/', '/quiz/', '/afirmacoes/', '/sobre/']) expect(sitemap).toContain(`<loc>https://confereoplano.com.br${p}</loc>`);
   expect(sitemap).not.toContain('resultado');
+});
+
+test('o texto de cada botão de resposta cabe dentro do botão, do celular pequeno ao desktop', async ({ page }) => {
+  await page.goto('/quiz/');
+  await expect(page.getByText(/^1 de \d+$/)).toBeVisible();
+  const grupo = page.getByRole('group', { name: 'Sua resposta' });
+  for (const largura of [320, 360, 390, 414, 640, 768, 1024, 1280]) {
+    await page.setViewportSize({ width: largura, height: 900 });
+    const vazamentos = await grupo.evaluate((g) =>
+      [...g.querySelectorAll('button')].flatMap((botao) => {
+        const b = botao.getBoundingClientRect();
+        // Mede o texto em si (não a caixa do span), que é o que transborda quando uma palavra não cabe.
+        const intervalo = document.createRange();
+        intervalo.selectNodeContents(botao.querySelector('span:last-child')!);
+        const t = intervalo.getBoundingClientRect();
+        const dentro = t.left >= b.left - 0.5 && t.right <= b.right + 0.5 && t.top >= b.top - 0.5 && t.bottom <= b.bottom + 0.5;
+        return dentro ? [] : [botao.textContent!.trim()];
+      }),
+    );
+    expect(vazamentos, `largura ${largura}px`).toEqual([]);
+  }
 });

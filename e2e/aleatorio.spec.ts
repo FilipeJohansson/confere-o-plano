@@ -113,21 +113,19 @@ for (let n = 1; n <= EXECUCOES; n++) {
         await expect(page.getByRole('heading', { name: 'Nenhuma afirmação respondida' })).toBeVisible();
       } else {
         // Recalcula o alinhamento aqui, de forma independente do código do site.
-        for (const [plano, nome] of [
-          ['flavio', 'Flávio Bolsonaro'],
-          ['lula', 'Lula'],
-        ] as const) {
+        for (const plano of ['flavio', 'lula'] as const) {
           const media =
             respondidas.reduce((s, p) => s + 1 - Math.abs(respostas[p.id]! - p.posicoes[plano].valor) / 4, 0) /
             respondidas.length;
-          const linha = page.locator('section').first().locator('div.flex.items-center', { hasText: nome });
-          await expect(linha.locator('span').last()).toHaveText(`${Math.round(media * 100)}%`);
+          await expect(page.locator(`[data-geral="${plano}"] [data-pct]`)).toHaveText(`${Math.round(media * 100)}%`);
         }
 
         const plural = (q: number, um: string, varios: string) => `${q} ${q === 1 ? um : varios}`;
         const resumo = plural(respondidas.length, 'afirmação respondida', 'afirmações respondidas');
         await expect(
-          page.getByText(puladas ? `${resumo} (${plural(puladas, 'pulada', 'puladas')})` : `em ${resumo}.`),
+          puladas
+            ? page.getByText(`${resumo} (${plural(puladas, 'pulada', 'puladas')})`, { exact: true })
+            : page.getByText(`em ${resumo}.`),
         ).toBeVisible();
         await expect(page.locator('article')).toHaveCount(respondidas.length);
       }

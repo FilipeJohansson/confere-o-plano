@@ -16,7 +16,7 @@ const temasComPergunta = temas
 >
   <div class="flex flex-col gap-12">
     <header class="flex flex-col gap-3">
-      <h1 class="text-3xl font-semibold text-balance">Todas as afirmações</h1>
+      <h1 class="text-3xl font-bold tracking-tight text-balance sm:text-4xl">Todas as afirmações</h1>
       <p class="text-slate-700 dark:text-slate-300">
         As {perguntas.length} afirmações do questionário, com a posição atribuída a cada plano e os trechos que a justificam.
         Cada link de página abre o PDF oficial no site do TSE.
@@ -28,7 +28,7 @@ const temasComPergunta = temas
       <nav aria-label="Temas" class="flex flex-wrap gap-2 text-sm">
         {
           temasComPergunta.map((t) => (
-            <a class="rounded-full px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100 dark:ring-slate-700 dark:hover:bg-slate-900" href={`#tema-${t.id}`}>
+            <a class="etiqueta py-1.5 text-sm hover:bg-white dark:hover:bg-slate-700" href={`#tema-${t.id}`}>
               {t.nome}
             </a>
           ))
@@ -38,8 +38,8 @@ const temasComPergunta = temas
 
     {
       temasComPergunta.map((t) => (
-        <section class="flex scroll-mt-4 flex-col gap-4" id={`tema-${t.id}`}>
-          <h2 class="text-xl font-semibold">{t.nome}</h2>
+        <section class="flex scroll-mt-32 flex-col gap-4" id={`tema-${t.id}`}>
+          <h2 class="titulo-secao">{t.nome}</h2>
           {t.perguntas.map((p) => (
             <CartaoAfirmacao pergunta={p} {planos} />
           ))}

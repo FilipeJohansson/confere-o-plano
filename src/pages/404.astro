@@ -5,12 +5,12 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <Base titulo="Página não encontrada · Confere o Plano" indexar={false}>
-  <div class="flex flex-col gap-4">
-    <h1 class="text-3xl font-semibold">Página não encontrada</h1>
+  <div class="cartao mx-auto flex max-w-3xl flex-col gap-4 p-6 sm:p-8">
+    <h1 class="text-3xl font-bold tracking-tight">Página não encontrada</h1>
     <p class="text-slate-700 dark:text-slate-300">O endereço pode ter sido digitado errado ou a página não existe mais.</p>
     <div class="flex flex-wrap gap-3">
-      <a class="rounded-lg bg-slate-900 px-4 py-2 font-semibold text-white dark:bg-white dark:text-slate-900" href={base}>Ir para o início</a>
-      <a class="rounded-lg px-4 py-2 font-semibold text-slate-800 ring-1 ring-slate-300 dark:text-slate-200 dark:ring-slate-700" href={`${base}quiz/`}>
+      <a class="botao-primario" href={base}>Ir para o início</a>
+      <a class="botao-secundario" href={`${base}quiz/`}>
         Responder o questionário
       </a>
     </div>

@@ -27,9 +27,9 @@
   const quem = RESPONSAVEL.nome ?? `@${RESPONSAVEL.github}`;
 </script>
 
-<article class="flex flex-col gap-10 [&_a]:underline [&_a]:underline-offset-4 [&_h2]:text-xl [&_h2]:font-semibold [&_p]:text-slate-700 dark:[&_p]:text-slate-300">
+<article class="mx-auto flex max-w-3xl flex-col gap-6 [&_a]:underline [&_a]:underline-offset-4 [&_h2]:text-xl [&_h2]:font-bold [&_p]:text-slate-700 dark:[&_p]:text-slate-300">
   <header class="flex flex-col gap-3">
-    <h1 class="text-3xl font-semibold text-balance">Sobre e metodologia</h1>
+    <h1 class="text-3xl font-bold tracking-tight text-balance sm:text-4xl">Sobre e metodologia</h1>
     <p>
       O Confere o Plano compara as suas respostas com o que está escrito nos planos de governo que os candidatos do 2º
       turno da eleição presidencial de 2026 registraram no TSE. Cada resultado vem com o trecho e a página do plano que o
@@ -37,7 +37,7 @@
     </p>
   </header>
 
-  <section class="flex flex-col gap-3">
+  <section class="cartao flex flex-col gap-3 p-5 sm:p-7">
     <h2>Quem faz</h2>
     <p>
       É um projeto independente e sem fins lucrativos, mantido por uma pessoa física:
@@ -46,7 +46,7 @@
     </p>
   </section>
 
-  <section class="flex flex-col gap-3">
+  <section class="cartao flex flex-col gap-3 p-5 sm:p-7">
     <h2>Fontes</h2>
     <p>
       Os únicos documentos usados são as propostas de governo publicadas pelo TSE. Os links das citações levam à página
@@ -55,7 +55,7 @@
     </p>
     <ul class="flex flex-col gap-3">
       {#each PLANOS as p (p)}
-          <li class="rounded-xl bg-slate-50 p-3 text-sm dark:bg-slate-900">
+          <li class="rounded-xl bg-slate-50 p-3 text-sm ring-1 ring-slate-200 ring-inset dark:bg-slate-950 dark:ring-slate-800">
             <p class="font-semibold text-slate-900 dark:text-slate-100">
               {NOME_PLANO[p].nome} ({NOME_PLANO[p].partido})
             </p>
@@ -75,7 +75,7 @@
     </ul>
   </section>
 
-  <section class="flex flex-col gap-3">
+  <section class="cartao flex flex-col gap-3 p-5 sm:p-7">
     <h2>Como as afirmações foram escolhidas</h2>
     <p>
       Os dois planos foram lidos por inteiro e organizados nas 8 categorias que o próprio TSE usa para indexá-los. Uma
@@ -105,7 +105,7 @@
     </p>
   </section>
 
-  <section class="flex flex-col gap-3">
+  <section class="cartao flex flex-col gap-3 p-5 sm:p-7">
     <h2>Como o resultado é calculado</h2>
     <p>
       Para cada afirmação respondida, a concordância com um plano é 100% quando a sua resposta é igual à posição do plano
@@ -119,7 +119,7 @@
     </p>
   </section>
 
-  <section class="flex flex-col gap-3">
+  <section class="cartao flex flex-col gap-3 p-5 sm:p-7">
     <h2>Limitações</h2>
     <p>
       Isto não é uma recomendação de voto. O site compara apenas o texto dos planos registrados no TSE, não o histórico,
@@ -129,7 +129,7 @@
     </p>
   </section>
 
-  <section class="flex flex-col gap-3">
+  <section class="cartao flex flex-col gap-3 p-5 sm:p-7">
     <h2>Privacidade</h2>
     <p>
       Suas respostas nunca saem do seu navegador: o cálculo é feito no seu aparelho e nada é enviado a servidores. O
@@ -145,7 +145,7 @@
     </p>
   </section>
 
-  <section class="flex flex-col gap-3">
+  <section class="cartao flex flex-col gap-3 p-5 sm:p-7">
     <h2>Correções</h2>
     <p>
       Achou uma citação que não confere, uma posição atribuída de forma errada ou uma afirmação mal formulada?
@@ -161,6 +161,6 @@
   </section>
 
   <p>
-    <a href="{base}quiz/" class="font-semibold">Responder o questionário</a>
+    <a href="{base}quiz/" class="botao-primario no-underline!">Responder o questionário</a>
   </p>
 </article>

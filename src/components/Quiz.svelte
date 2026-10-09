@@ -121,11 +121,11 @@
 <svelte:window onkeydown={teclado} />
 
 {#if atual}
-  <div class="flex flex-col gap-6">
+  <div class="cartao mx-auto flex max-w-3xl flex-col gap-6 p-4 sm:p-8">
     <div>
-      <div class="mb-2 flex items-baseline justify-between gap-4 text-sm text-slate-600 dark:text-slate-400">
-        <span class="font-medium">{nomeTema.get(atual.tema)}</span>
-        <span class="shrink-0 whitespace-nowrap tabular-nums">{indice + 1} de {ordem.length}</span>
+      <div class="mb-3 flex items-center justify-between gap-4 text-sm text-slate-600 dark:text-slate-400">
+        <span class="etiqueta">{nomeTema.get(atual.tema)}</span>
+        <span class="shrink-0 font-semibold whitespace-nowrap tabular-nums">{indice + 1} de {ordem.length}</span>
       </div>
       <div
         class="h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800"
@@ -159,22 +159,24 @@
       </div>
     {/if}
 
-    <div class="grid grid-cols-5 gap-2 sm:gap-3" role="group" aria-label="Sua resposta">
+    <!-- Cinco colunas também no celular (empilhar obrigaria a rolar a cada pergunta): o texto encolhe com a largura
+         da tela (9 a 12 px) para "totalmente" caber até em 320 px. -->
+    <div class="grid grid-cols-5 gap-1.5 sm:gap-3" role="group" aria-label="Sua resposta">
       {#each ESCALA as op, i (op.valor)}
         {@const selecionado = respostaAtual === op.valor}
         <button
           type="button"
-          class="group flex flex-col items-center gap-2 rounded-xl border px-1 py-3 text-center transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 sm:px-2 sm:py-4 dark:focus-visible:outline-white {selecionado
-            ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900 dark:border-slate-100 dark:bg-slate-900 dark:ring-slate-100'
-            : 'border-slate-200 bg-white hover:border-slate-400 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-slate-600 dark:hover:bg-slate-900'}"
+          class="group flex flex-col items-center gap-1.5 rounded-xl border px-0.5 py-2.5 text-center transition sm:gap-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 sm:px-2 sm:py-4 dark:focus-visible:outline-white {selecionado
+            ? 'border-slate-900 bg-white shadow-md ring-1 ring-slate-900 dark:border-slate-100 dark:bg-slate-800 dark:ring-slate-100'
+            : 'border-slate-200 bg-slate-50 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-white hover:shadow-md dark:border-slate-700 dark:bg-slate-950 dark:hover:border-slate-500 dark:hover:bg-slate-800'}"
           aria-pressed={selecionado}
           aria-keyshortcuts={String(i + 1)}
           onclick={() => responder(op.valor)}
         >
-          <span class="grid size-10 place-items-center rounded-full transition group-hover:scale-105 sm:size-12 {op.cor}">
+          <span class="grid size-9 place-items-center rounded-full transition group-hover:scale-105 sm:size-12 {op.cor}">
             <Icone nome={op.icone} classe="size-5 sm:size-6" />
           </span>
-          <span class="text-xs leading-tight font-medium text-slate-700 sm:text-sm dark:text-slate-300">{op.texto}</span>
+          <span class="text-[clamp(0.5625rem,2.8vw,0.75rem)] leading-tight font-medium text-slate-700 sm:text-sm dark:text-slate-300">{op.texto}</span>
         </button>
       {/each}
     </div>
@@ -230,5 +232,5 @@
     {/if}
   </div>
 {:else}
-  <p class="text-slate-600 dark:text-slate-400">Carregando…</p>
+  <p class="cartao mx-auto max-w-3xl p-8 text-slate-600 dark:text-slate-400">Carregando…</p>
 {/if}
