@@ -1,0 +1,359 @@
+# Perguntas que pontuam.
+#
+# valor: posição do plano em relação à AFIRMAÇÃO, de -2 (discorda totalmente) a +2 (concorda totalmente).
+# nivel:
+#   A  -> os dois planos têm posição explícita e citável.
+#   B+ -> um dos lados é inferido de texto próximo; a inferência fica explicada em `inferencia`
+#         e é mostrada ao usuário no resultado.
+# trecho: cópia literal do PDF, sempre de uma única página. Validado por scripts/validar-citacoes.mjs.
+
+# ---------------------------------------------------------------- economia
+- id: economia-reforma-tributaria
+  tema: economia
+  nivel: A
+  afirmacao: A reforma tributária do consumo, que troca cinco tributos (PIS, Cofins, IPI, ICMS e ISS) por dois (CBS e IBS), deve ser mantida como foi aprovada.
+  contexto: A reforma foi aprovada pelo Congresso em 2023 e está em fase de transição. Os dois planos falam dela diretamente.
+  posicoes:
+    lula:
+      valor: 2
+      resumo: Apresenta a reforma como conquista do governo e quer consolidá-la.
+      citacoes:
+        - pagina: 11
+          trecho: Aprovamos a histórica reforma tributária do consumo.
+        - pagina: 48
+          trecho: consolidar os avanços promovidos pela reforma tributária
+    flavio:
+      valor: -2
+      resumo: Propõe revisar e redimensionar a reforma para reduzir a alíquota do novo IVA.
+      citacoes:
+        - pagina: 30
+          trecho: Vamos promover a revisão e o redimensionamento da reforma tributária em curso
+        - pagina: 30
+          trecho: reduzir o IVA, hoje projetado num dos patamares mais altos do mundo
+
+- id: economia-regra-fiscal
+  tema: economia
+  nivel: A
+  afirmacao: O arcabouço fiscal atual deve ser substituído por regras mais rígidas, com metas de superávit e limite de gastos para os três Poderes.
+  contexto: O arcabouço fiscal é a regra, aprovada em 2023, que limita o crescimento das despesas federais.
+  posicoes:
+    lula:
+      valor: -2
+      resumo: Quer manter o arcabouço fiscal atual.
+      citacoes:
+        - pagina: 49
+          trecho: manteremos o novo arcabouço fiscal, que controlou o crescimento das despesas sem prejudicar as políticas sociais
+    flavio:
+      valor: 2
+      resumo: Propõe reformular as regras fiscais, com superávits e limite aos gastos dos três Poderes.
+      citacoes:
+        - pagina: 71
+          trecho: Apresentaremos uma reformulação nas atuais regras fiscais
+        - pagina: 71
+          trecho: entregando superávits primários
+        - pagina: 71
+          trecho: haverá uma regra clara de controle de gastos discricionários dos três Poderes da União
+
+- id: economia-credito-subsidiado
+  tema: economia
+  nivel: A
+  afirmacao: O governo deve limitar o crédito subsidiado com dinheiro público e deixar que o mercado, e não o Estado, oriente os investimentos da indústria.
+  contexto: Trata do papel do Estado (bancos públicos, crédito com juros subsidiados, exigência de conteúdo nacional) no estímulo à indústria.
+  posicoes:
+    lula:
+      valor: -2
+      resumo: Defende financiamento direcionado, compras públicas e benefícios condicionados a conteúdo local.
+      citacoes:
+        - pagina: 51
+          trecho: Utilizaremos financiamento direcionado, com soluções inovadoras de parceria entre crédito público e privado, compras públicas, concessões, regulações e benefícios condicionados a conteúdo local
+    flavio:
+      valor: 2
+      resumo: Propõe limitar o crédito subsidiado pelo Tesouro e diz que o Estado deve ser regulador, não empresário.
+      citacoes:
+        - pagina: 71
+          trecho: limitando o crédito subsidiado com recursos do Tesouro
+        - pagina: 55
+          trecho: O Estado atuará como regulador e coordenador, não como empresário
+
+- id: economia-jornada-negociada
+  tema: economia
+  nivel: A
+  afirmacao: A jornada de trabalho deve ser definida por negociação entre empresa e trabalhador, e não por uma regra única imposta por lei.
+  contexto: Está em debate no Congresso o fim da escala 6x1 (seis dias de trabalho por um de folga) e a redução da jornada máxima para 40 horas semanais.
+  posicoes:
+    lula:
+      valor: -2
+      resumo: Defende fim da escala 6x1 e jornada de 40 horas por lei, sem redução salarial.
+      citacoes:
+        - pagina: 75
+          trecho: assegurar o fim da escala 6x1 e a redução da jornada de trabalho para 40 horas, sem redução salarial
+    flavio:
+      valor: 2
+      resumo: Defende o "negociado sobre o legislado" e critica a discussão de jornada por lei.
+      citacoes:
+        - pagina: 44
+          trecho: permitir que trabalhador e empresa combinem diretamente as condições de trabalho que funcionam para os dois, dentro da lei, em vez de seguir uma regra única imposta a todos
+        - pagina: 45
+          trecho: Situações que se repetem na discussão de jornada – onde o governo deseja ignorar a prevalência do negociado sobre o legislado
+
+- id: economia-sindicatos
+  tema: economia
+  nivel: A
+  afirmacao: Os sindicatos devem ter um papel mais forte na negociação coletiva e na representação dos trabalhadores.
+  contexto: A reforma trabalhista de 2017 acabou com a contribuição sindical obrigatória e reduziu o papel dos sindicatos em alguns procedimentos.
+  posicoes:
+    lula:
+      valor: 2
+      resumo: Quer fortalecer a negociação coletiva, atualizar o sistema sindical e retomar a assistência sindical nas rescisões.
+      citacoes:
+        - pagina: 76
+          trecho: Reafirmamos nosso compromisso com o fortalecimento da negociação coletiva e com a atualização do sistema sindical de representação coletiva de interesse.
+        - pagina: 75
+          trecho: retomando assistência sindical nas homologações de rescisão do contrato de trabalho
+    flavio:
+      valor: -2
+      resumo: Posiciona-se "contra a República Sindical" e critica o peso de dirigentes sindicais.
+      citacoes:
+        - pagina: 44
+          trecho: O país precisa se posicionar contra a República Sindical, em que os interesses de dirigentes das entidades se sobrepõem ao interesse dos trabalhadores.
+
+- id: economia-aplicativos
+  tema: economia
+  nivel: B+
+  afirmacao: O trabalho por aplicativo deve ser regulamentado por lei, com regras sobre relação de trabalho, remuneração e previdência.
+  contexto: Motoristas e entregadores de aplicativo hoje não têm regras trabalhistas específicas. Há uma proposta do governo sobre o tema no Congresso.
+  posicoes:
+    lula:
+      valor: 2
+      resumo: Quer uma regulação que defina relação de trabalho, remuneração, direitos e previdência.
+      citacoes:
+        - pagina: 75
+          trecho: estabeleça as regras para definir a relação de trabalho, a remuneração, condições de trabalho, proteções e direitos laborais e previdenciários
+    flavio:
+      valor: 0
+      resumo: Prioriza manter as oportunidades de renda dos aplicativos e critica a proposta do governo, sem propor regra própria.
+      inferencia: O plano não diz se é contra ou a favor de uma lei específica. Fala em "proteção social e previdenciária", mas prioriza preservar as oportunidades atuais e critica a proposta enviada pelo governo. Por isso a posição foi marcada como neutra.
+      citacoes:
+        - pagina: 45
+          trecho: Nosso projeto garante a manutenção das oportunidades de renda e de trabalho trazidas pelo trabalho por aplicativos.
+        - pagina: 45
+          trecho: O governo enviou proposta que não avançou no Congresso, justamente por colocar à frente do processo o interesse de sindicalistas.
+
+# ---------------------------------------------------------------- saude
+- id: saude-cuidado-familia
+  tema: saude
+  nivel: A
+  afirmacao: O cuidado de crianças, idosos e pessoas com deficiência é responsabilidade principalmente da família; o Estado deve apoiar, sem assumir esse papel.
+  contexto: Os dois planos propõem redes de cuidado (centros-dia, creches, atendimento domiciliar), mas descrevem de forma diferente quem é o responsável principal.
+  posicoes:
+    lula:
+      valor: -1
+      resumo: Trata o cuidado como direito universal a ser garantido pelo Estado, com responsabilidade compartilhada.
+      citacoes:
+        - pagina: 26
+          trecho: reconhece o cuidado como um direito universal (a receber cuidados, a cuidar e ao autocuidado), a ser garantido pelo Estado, por meio da corresponsabilização social e entre homens e mulheres pela sua provisão.
+    flavio:
+      valor: 2
+      resumo: Diz que o Estado não deve assumir o cuidado no lugar da família, mas pode dividi-lo.
+      citacoes:
+        - pagina: 38
+          trecho: O Estado não pode assumir esse cuidado no lugar da família, mas pode dividi-lo com ela.
+
+# ---------------------------------------------------------------- seguranca
+- id: seguranca-prisao-punicao
+  tema: seguranca
+  nivel: B+
+  afirmacao: A prisão deve servir antes de tudo como punição, mesmo que isso signifique condições mais duras para os presos.
+  contexto: Trata do papel do sistema prisional, entre punir e reduzir a reincidência, e das regras para quem está preso, como visitas e acesso a celular.
+  posicoes:
+    lula:
+      valor: -1
+      resumo: Define o sistema prisional pelo combate ao crime organizado, pela redução da reincidência e pela garantia de direitos; também quer isolar lideranças criminosas.
+      inferencia: O plano não rejeita a punição, mas, ao dizer o que é estratégico no sistema prisional, cita a redução da reincidência e a garantia de direitos, e não a punição. Por defender também o isolamento de lideranças, a posição é "discorda", não "discorda totalmente".
+      citacoes:
+        - pagina: 28
+          trecho: A gestão do sistema prisional é estratégica para o enfrentamento ao crime organizado, a redução da reincidência e a garantia de direitos.
+        - pagina: 28
+          trecho: ampliando sua capacidade operacional e de isolamento de lideranças criminosas
+    flavio:
+      valor: 2
+      resumo: Diz que a prisão é punição e propõe regras mais duras, sem celular e sem visita íntima.
+      citacoes:
+        - pagina: 14
+          trecho: Quem comete crimes graves vai entender que prisão é punição.
+        - pagina: 14
+          trecho: Eles vão viver sem celular, sem visita íntima e com visitas monitoradas.
+
+# ---------------------------------------------------------------- agraria
+- id: agraria-reforma-agraria
+  tema: agraria
+  nivel: B+
+  afirmacao: O governo deve seguir com a reforma agrária, assentando famílias acampadas em novas terras.
+  contexto: Reforma agrária é a redistribuição de terras para famílias sem terra, inclusive por desapropriação de áreas que não cumprem função social.
+  posicoes:
+    lula:
+      valor: 2
+      resumo: Promete continuar a reforma agrária e assentar famílias acampadas.
+      citacoes:
+        - pagina: 60
+          trecho: Continuaremos a avançar na política de reforma agrária, assentando as famílias acampadas, estruturando os assentamentos e ampliando o acesso ao crédito fundiário.
+    flavio:
+      valor: -1
+      resumo: Não menciona reforma agrária; prioriza titular quem já ocupa a terra e garantir o direito de propriedade "sem relativizações".
+      inferencia: O plano não fala em reforma agrária. A política fundiária proposta é titular pequenos proprietários que já estão na terra, e o texto afirma o direito de propriedade "sem margem para relativizações", o que vai na direção oposta à desapropriação.
+      citacoes:
+        - pagina: 54
+          trecho: promover ampla regularização e titulação do pequeno proprietário rural
+        - pagina: 54
+          trecho: E traremos segurança jurídica sólida, irreversível e sem margem para relativizações do direito de propriedade
+
+- id: agraria-desmatamento-liquido
+  tema: agraria
+  nivel: B+
+  afirmacao: A meta ambiental deve ser zerar o desmatamento líquido (compensando também o desmatamento legal com restauração), e não apenas o desmatamento ilegal.
+  contexto: '"Desmatamento ilegal zero" mira só o que é feito sem autorização. "Desmatamento líquido zero" exige que todo desmatamento, inclusive o autorizado, seja compensado por áreas restauradas.'
+  posicoes:
+    lula:
+      valor: 2
+      resumo: Mantém a meta de desmatamento líquido zero até 2030.
+      citacoes:
+        - pagina: 70
+          trecho: continuaremos trabalhando para alcançar o desmatamento líquido zero até 2030
+    flavio:
+      valor: -1
+      resumo: A meta proposta é zerar o desmatamento ilegal até 2029.
+      inferencia: O plano não se opõe explicitamente à meta de desmatamento líquido, mas escolhe como meta apenas o desmatamento ilegal.
+      citacoes:
+        - pagina: 58
+          trecho: Teremos a meta de zerar o desmatamento ilegal até 2029
+
+# ---------------------------------------------------------------- externa
+- id: externa-brics
+  tema: externa
+  nivel: B+
+  afirmacao: O Brasil deve aprofundar a aproximação geopolítica com o BRICS e o Sul Global.
+  contexto: O BRICS reúne Brasil, Rússia, Índia, China, África do Sul e outros países. "Sul Global" designa países em desenvolvimento.
+  posicoes:
+    lula:
+      valor: 2
+      resumo: Promete aprofundar a aproximação com o BRICS e o Sul Global.
+      citacoes:
+        - pagina: 81
+          trecho: Aprofundaremos a aproximação geopolítica com o BRICS e com o Sul Global
+    flavio:
+      valor: -1
+      resumo: Não cita o BRICS; defende diplomacia "sem afinidade ideológica" e reaproximação com EUA, Israel e Argentina.
+      inferencia: O plano não menciona o BRICS. Critica a política externa atual por alinhamento ideológico e propõe recompor relações com Argentina, Estados Unidos e Israel, o que indica prioridade diferente.
+      citacoes:
+        - pagina: 62
+          trecho: o Brasil voltará a privilegiar os parceiros interessados no ganho mútuo do comércio, sem escolher amigos por afinidade ideológica
+        - pagina: 62
+          trecho: Nos últimos anos, as relações com países como Argentina, Estados Unidos e Israel foram levadas ao limite do rompimento.
+
+# ---------------------------------------------------------------- governanca
+- id: governanca-regulacao-redes
+  tema: governanca
+  nivel: A
+  afirmacao: O Estado deve regular as redes sociais e plataformas digitais para impedir a difusão de desinformação.
+  contexto: Trata de regras e órgãos públicos para lidar com conteúdo falso ou nocivo nas redes.
+  posicoes:
+    lula:
+      valor: 2
+      resumo: Defende avançar na regulação das redes para impedir desinformação e campanhas de ódio.
+      citacoes:
+        - pagina: 16
+          trecho: avançar ainda mais na regulação democrática das redes sociais e das plataformas digitais, de modo a impedir que elas difundam desinformação
+    flavio:
+      valor: -2
+      resumo: Propõe extinguir estruturas estatais que classificam conteúdo como desinformação, chamando-as de censura.
+      citacoes:
+        - pagina: 66
+          trecho: 'Vamos fazer um Tesouraço da Censura: acabar com qualquer estrutura estatal'
+        - pagina: 66
+          trecho: estruturas criadas para tratar como desinformação aquilo que incomoda o poder
+
+- id: governanca-regulacao-ia
+  tema: governanca
+  nivel: B+
+  afirmacao: O Brasil deve aprovar regras para a inteligência artificial que imponham obrigações às empresas de tecnologia.
+  contexto: Trata de leis para o uso e o desenvolvimento de inteligência artificial, como pagar autores pelo conteúdo usado e exigir salvaguardas de data centers.
+  posicoes:
+    lula:
+      valor: 2
+      resumo: Defende regulamentar a inteligência artificial, com pagamento a autores pelo conteúdo usado e salvaguardas obrigatórias para data centers.
+      citacoes:
+        - pagina: 42
+          trecho: Trabalharemos pela aprovação de lei do direito autoral em ambiente digital e a regulamentação da inteligência artificial, para que músicos, autores e artistas sejam pagos quando as plataformas usarem conteúdo brasileiro.
+        - pagina: 54
+          trecho: Vamos assegurar que a expansão de data centers e infraestruturas de inteligência artificial seja acompanhada de salvaguardas socioambientais obrigatórias
+    flavio:
+      valor: -1
+      resumo: Propõe uma lei voltada à liberdade de inovar, sem entraves, e critica regras que afastam investimento.
+      inferencia: O plano também propõe uma lei, mas com o objetivo oposto ao de impor obrigações, a de deixar a tecnologia se desenvolver "sem entraves". Como também fala em usar a inteligência artificial "a serviço das pessoas", a posição é "discorda", não "discorda totalmente".
+      citacoes:
+        - pagina: 56
+          trecho: Proporemos uma legislação voltada à liberdade de criar e inovar, inspirada nas melhores práticas internacionais, para que a tecnologia seja desenvolvida aqui sem entraves
+        - pagina: 57
+          trecho: sufocada por regras que afugentam o investimento
+
+- id: governanca-privatizacoes
+  tema: governanca
+  nivel: B+
+  afirmacao: O governo deve retomar a privatização de empresas estatais quando a presença do Estado não fizer mais sentido.
+  contexto: Inclui empresas como Petrobras, Correios, bancos públicos e outras estatais federais.
+  posicoes:
+    lula:
+      valor: -1
+      resumo: Não fala em privatizar; propõe ampliar a atuação da Petrobras, inclusive voltando à distribuição de combustíveis.
+      inferencia: O plano não se manifesta sobre privatizações em geral. A proposta concreta sobre estatais vai no sentido oposto (a Petrobras volta a um segmento do qual tinha saído).
+      citacoes:
+        - pagina: 67
+          trecho: A Petrobras deverá retornar ao segmento de distribuição de combustíveis, expandindo sua capacidade de refino
+    flavio:
+      valor: 2
+      resumo: Propõe retomar o Programa Nacional de Desestatização, caso a caso.
+      citacoes:
+        - pagina: 70
+          trecho: vamos retomar o Programa Nacional de Desestatização com critério, avaliando caso a caso onde a presença do Estado deixou de fazer sentido
+
+- id: governanca-stf
+  tema: governanca
+  nivel: B+
+  afirmacao: Deve haver limites para decisões individuais (monocráticas) de ministros do STF.
+  contexto: Decisões monocráticas são tomadas por um único ministro, sem passar pelo plenário do tribunal.
+  posicoes:
+    lula:
+      valor: 0
+      resumo: Não propõe mudanças no STF; fala em diálogo com o Judiciário respeitando a autonomia dos Poderes.
+      inferencia: O plano não trata de decisões monocráticas. Fala apenas em diálogo com o Judiciário "respeitada a autonomia dos Poderes", sem propor reformas no Supremo. Por isso a posição foi marcada como neutra.
+      citacoes:
+        - pagina: 16
+          trecho: propomos a continuidade do diálogo permanente com os atores do judiciário, respeitada a autonomia dos Poderes, para estimular o aperfeiçoamento do sistema de Justiça
+    flavio:
+      valor: 2
+      resumo: Propõe limitar decisões monocráticas, entre outras mudanças no STF.
+      citacoes:
+        - pagina: 65
+          trecho: Limitação das decisões monocráticas do STF, privilegiando as decisões colegiadas
+
+- id: governanca-enxugar-estado
+  tema: governanca
+  nivel: B+
+  afirmacao: O governo federal deve ser enxugado, com corte de ministérios e de cargos comissionados.
+  contexto: Cargos comissionados são cargos de livre nomeação, preenchidos sem concurso público.
+  posicoes:
+    lula:
+      valor: -1
+      resumo: Não propõe cortes; prevê criar o Ministério da Segurança Pública e valorizar servidores.
+      inferencia: O plano não fala em reduzir a estrutura do governo. Propõe criar um novo ministério e aprofundar a valorização dos servidores.
+      citacoes:
+        - pagina: 30
+          trecho: criaremos o Ministério da Segurança Pública
+        - pagina: 16
+          trecho: a retomada da política de valorização e diálogo com servidores
+    flavio:
+      valor: 2
+      resumo: Propõe cortar pelo menos 10 ministérios e reduzir cargos comissionados.
+      citacoes:
+        - pagina: 69
+          trecho: Isso inclui o corte de no mínimo 10 ministérios, a redução de cargos comissionados e de despesas administrativas

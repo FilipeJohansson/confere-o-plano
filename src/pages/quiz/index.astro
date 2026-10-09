@@ -1,0 +1,12 @@
+---
+import Quiz from '../../components/Quiz.svelte';
+import Base from '../../layouts/Base.astro';
+import { perguntas, temas } from '../../lib/dados';
+
+// O quiz só recebe o texto das afirmações; as posições dos planos ficam fora desta página.
+const paraQuiz = perguntas.map(({ id, tema, afirmacao, contexto }) => ({ id, tema, afirmacao, contexto }));
+---
+
+<Base titulo="Questionário · Confere o Plano">
+  <Quiz client:load perguntas={paraQuiz} {temas} base={import.meta.env.BASE_URL} />
+</Base>

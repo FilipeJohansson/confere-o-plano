@@ -1,0 +1,9 @@
+// Publicação no Cloudflare Pages: só serve o site gerado em dist/.
+// No painel do Pages: build "pnpm run build", saída "dist". Local: pnpm build && pnpm exec wrangler pages dev
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "confere-o-plano",
+  "compatibility_date": "2026-09-01",
+  // O Pages serve dist/404.html para endereços inexistentes, aplica public/_headers e redireciona /quiz para /quiz/.
+  "pages_build_output_dir": "./dist"
+}

@@ -1,0 +1,42 @@
+name: Correção de conteúdo
+description: Citação errada, posição atribuída a um plano que não corresponde ao texto, ou outro erro no conteúdo.
+title: 'Correção: '
+labels: [correcao]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por ajudar. Quanto mais específico, mais rápido a correção sai.
+        Não informe como você respondeu o questionário: isso não é necessário para corrigir o conteúdo.
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo de problema
+      options:
+        - Citação não confere com o PDF
+        - Posição atribuída ao plano não corresponde ao texto
+        - Afirmação mal formulada ou tendenciosa
+        - Outro
+    validations:
+      required: true
+  - type: input
+    id: pergunta
+    attributes:
+      label: Afirmação
+      description: Identificador ou texto da afirmação (preenchido automaticamente quando você vem do site).
+  - type: dropdown
+    id: plano
+    attributes:
+      label: Plano
+      options:
+        - Flávio Bolsonaro (PL)
+        - Lula (PT)
+        - Os dois
+        - Não se aplica
+  - type: textarea
+    id: descricao
+    attributes:
+      label: O que está errado e qual seria o correto
+      description: Se possível, cite a página do PDF oficial e o trecho.
+    validations:
+      required: true

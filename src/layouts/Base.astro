@@ -1,0 +1,106 @@
+---
+import { CHAVE_CONCLUIU, GOATCOUNTER, HOSTS_CONTADOS } from '../lib/contagem';
+import BotaoTema from '../components/BotaoTema.svelte';
+import { urlCorrecao } from '../lib/projeto';
+import { SCRIPT_TEMA } from '../lib/tema';
+import '../styles/global.css';
+
+interface Props {
+  titulo?: string;
+  descricao?: string;
+  /** false: pede aos buscadores para não indexar (404, resultado sem respostas). */
+  indexar?: boolean;
+}
+
+const {
+  titulo = 'Confere o Plano',
+  indexar = true,
+  descricao = 'Responda afirmações e veja com qual plano de governo do 2º turno de 2026 você mais concorda, com citações e páginas de cada plano.',
+} = Astro.props;
+const base = import.meta.env.BASE_URL;
+const canonica = new URL(Astro.url.pathname, Astro.site);
+const imagem = new URL(`${base}compartilhar.png`, Astro.site);
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {/* Antes de tudo, para o tema escuro escolhido não piscar em claro. */}
+    <script is:inline set:html={SCRIPT_TEMA} />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <title>{titulo}</title>
+    <meta name="description" content={descricao} />
+    {indexar ? <link rel="canonical" href={canonica} /> : <meta name="robots" content="noindex" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Confere o Plano" />
+    <meta property="og:url" content={canonica} />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descricao} />
+    <meta property="og:image" content={imagem} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Confere o Plano: qual plano de governo do 2º turno combina mais com o que você pensa?" />
+    <meta name="twitter:card" content="summary_large_image" />
+    {
+      import.meta.env.PROD && (
+        <>
+          {/* Define o caminho enviado antes de o script do GoatCounter carregar: só o pathname, nunca o "#r=".
+              O script só é carregado no domínio do site (não nas prévias da Cloudflare). */}
+          <script
+            is:inline
+            define:vars={{ chave: CHAVE_CONCLUIU, hosts: HOSTS_CONTADOS, contador: `https://${GOATCOUNTER}.goatcounter.com/count` }}
+          >
+            window.goatcounter = {
+              endpoint: contador,
+              path: function () {
+                var caminho = location.pathname;
+                try {
+                  if (/\/resultado\/$/.test(caminho) && sessionStorage.getItem(chave)) {
+                    sessionStorage.removeItem(chave);
+                    return caminho + 'concluido';
+                  }
+                } catch (e) {}
+                return caminho;
+              },
+            };
+            if (hosts.indexOf(location.hostname) !== -1) {
+              var script = document.createElement('script');
+              script.async = true;
+              script.dataset.goatcounter = contador;
+              script.src = 'https://gc.zgo.at/count.js';
+              document.head.appendChild(script);
+            }
+          </script>
+        </>
+      )
+    }
+  </head>
+  <body class="flex min-h-dvh flex-col">
+    <header class="border-b border-slate-200 dark:border-slate-800">
+      <div class="mx-auto flex max-w-4xl items-center justify-between gap-4 px-4 py-2">
+        <a href={base} class="font-semibold">Confere o Plano</a>
+        <div class="flex items-center gap-3">
+          <span class="text-xs text-slate-500 dark:text-slate-400">Eleições 2026 · 2º turno</span>
+          <BotaoTema client:load />
+        </div>
+      </div>
+    </header>
+    <main class="mx-auto w-full max-w-4xl flex-1 px-4 py-8 sm:py-12">
+      <slot />
+    </main>
+    <footer class="mx-auto flex w-full max-w-4xl flex-col gap-2 px-4 pb-10 text-xs text-slate-500 dark:text-slate-400">
+      <nav class="flex flex-wrap gap-x-4 gap-y-1 font-medium text-slate-700 dark:text-slate-300" aria-label="Rodapé">
+        <a class="underline underline-offset-4" href={`${base}sobre/`}>Sobre e metodologia</a>
+        <a class="underline underline-offset-4" href={`${base}afirmacoes/`}>Todas as afirmações</a>
+        <a class="underline underline-offset-4" href={urlCorrecao()} target="_blank" rel="noopener">Reportar um erro</a>
+      </nav>
+      <p>
+      Projeto independente, sem vínculo com o TSE, candidatos ou partidos. Compara apenas os planos de governo registrados no TSE, não o histórico, as falas ou os votos dos candidatos. Suas
+      respostas nunca saem do seu navegador; contamos apenas visitas às páginas, de forma anônima e sem cookies.
+      </p>
+    </footer>
+  </body>
+</html>

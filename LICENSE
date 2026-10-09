@@ -1,0 +1,35 @@
+Confere o Plano
+Copyright (c) 2026 FilipeJohansson (https://github.com/FilipeJohansson). Todos os direitos reservados.
+
+Este repositório é público para que qualquer pessoa possa conferir como o site funciona e de onde vem cada
+informação. Isso não concede licença para usar o código ou o conteúdo além do que está descrito abaixo.
+
+PERMITIDO, SEM PEDIR AUTORIZAÇÃO
+
+- Ler o código e os dados, e executá-los localmente para conferir o funcionamento e os resultados do site.
+- Abrir issues apontando erros ou sugerindo correções.
+- Citar trechos curtos do site ou deste repositório, com indicação da fonte ("Confere o Plano",
+  https://confereoplano.com.br), nos termos do art. 46 da Lei 9.610/98.
+
+NÃO PERMITIDO SEM AUTORIZAÇÃO POR ESCRITO
+
+- Copiar, redistribuir ou publicar o código, os textos, as afirmações, as posições atribuídas aos planos ou a
+  metodologia, no todo ou em parte.
+- Criar ou publicar versões derivadas (outro site, aplicativo ou material baseado neste).
+- Qualquer uso comercial.
+
+O fork dentro do GitHub, permitido pelos Termos de Serviço do GitHub, não autoriza nenhum uso além dos listados
+acima.
+
+CONTEÚDO DE TERCEIROS
+
+- Os trechos das propostas de governo citados no site e em data/ são de autoria das respectivas candidaturas e
+  foram obtidos no site do TSE; os PDFs em data/pdf/ são cópias guardadas apenas para verificação.
+- As bibliotecas usadas pelo projeto têm licenças próprias.
+
+CONTRIBUIÇÕES
+
+Ao enviar uma contribuição (pull request ou sugestão de texto), você concorda que ela pode ser incorporada ao
+projeto e distribuída sob estes mesmos termos.
+
+Pedidos de autorização: abra uma issue em https://github.com/FilipeJohansson/confere-o-plano/issues.

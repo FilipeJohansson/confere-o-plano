@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import { perguntas, planos } from '../lib/dados';
+import { NOME_PLANO } from '../lib/rotulos';
+import { PLANOS } from '../lib/planos';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<Base>
+  <div class="flex flex-col gap-10">
+    <section class="flex flex-col gap-4">
+      <h1 class="text-3xl font-semibold text-balance sm:text-4xl">Qual plano de governo combina mais com o que você pensa?</h1>
+      <p class="text-lg text-slate-700 dark:text-slate-300">
+        Responda {perguntas.length} afirmações e veja o quanto você concorda com os planos de governo que os candidatos do 2º turno
+        registraram no TSE, com o trecho e a página de cada plano para cada resposta.
+      </p>
+      <a
+        href={`${base}quiz/`}
+        class="self-start rounded-xl bg-slate-900 px-6 py-3 text-lg font-semibold text-white dark:bg-white dark:text-slate-900"
+      >
+        Começar
+      </a>
+      <p class="text-sm text-slate-600 dark:text-slate-400">Leva cerca de 5 minutos. Os nomes dos candidatos só aparecem no resultado.</p>
+    </section>
+
+    <section class="flex flex-col gap-3">
+      <h2 class="text-xl font-semibold">Como funciona</h2>
+      <ul class="flex list-disc flex-col gap-2 pl-5 text-slate-700 dark:text-slate-300">
+        <li>Cada afirmação foi escrita a partir de um ponto em que os dois planos têm posições diferentes.</li>
+        <li>Só entram afirmações em que os dois planos se manifestam. Quando a posição de um lado precisa ser inferida, o resultado avisa e explica.</li>
+        <li>Propostas que aparecem em um plano só são mostradas no resultado, mas não contam no cálculo.</li>
+        <li>Todo trecho citado é conferido automaticamente contra o texto da página indicada no PDF oficial.</li>
+      </ul>
+      <div class="flex flex-wrap gap-x-6 gap-y-2">
+        <a class="underline underline-offset-4" href={`${base}sobre/`}>Metodologia completa, fontes e privacidade</a>
+        <a class="underline underline-offset-4" href={`${base}afirmacoes/`}>Ver todas as afirmações e as posições dos planos</a>
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-3">
+      <h2 class="text-xl font-semibold">Os planos</h2>
+      <ul class="flex flex-col gap-2">
+        {
+          PLANOS.map((p) => (
+            <li>
+              <a class="underline underline-offset-4" href={planos[p].pagina_tse} target="_blank" rel="noopener">
+                {NOME_PLANO[p].nome} ({NOME_PLANO[p].partido}): proposta de governo no site do TSE
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</Base>

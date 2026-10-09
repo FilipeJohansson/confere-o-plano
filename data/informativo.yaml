@@ -1,0 +1,199 @@
+# Conteúdo mostrado no resultado, mas que NÃO entra no cálculo de alinhamento.
+#
+# so_um_lado: propostas que aparecem em apenas um dos planos (o outro é omisso).
+# consenso:   pontos em que os dois planos propõem praticamente a mesma coisa.
+# lado_a_lado: temas sensíveis em que comparar exigiria inferência; mostramos as duas citações sem pontuar.
+
+so_um_lado:
+  - id: maioridade-penal
+    tema: seguranca
+    plano: flavio
+    assunto: Redução da maioridade penal para 16 anos
+    citacoes:
+      - pagina: 13
+        trecho: O novo governo do Brasil vai apoiar e sancionar a redução da maioridade penal de 18 para 16 anos.
+  - id: faccoes-terroristas
+    tema: seguranca
+    plano: flavio
+    assunto: Facções criminosas classificadas como organizações narcoterroristas
+    citacoes:
+      - pagina: 13
+        trecho: PCC, CV, milícias e todas as outras facções serão declaradas como organizações narcoterroristas.
+  - id: castracao-quimica
+    tema: seguranca
+    plano: flavio
+    assunto: Castração química para condenados por estupro e abuso de crianças
+    citacoes:
+      - pagina: 14
+        trecho: aprovar e implementar a castração química de criminosos que abusam de mulheres e crianças
+  - id: controle-armas
+    tema: seguranca
+    plano: lula
+    assunto: Manutenção da política de controle de armas e munições
+    citacoes:
+      - pagina: 28
+        trecho: manteremos uma política de controle de armas e munições
+  - id: civico-militares
+    tema: educacao
+    plano: flavio
+    assunto: Ampliação das escolas cívico-militares
+    citacoes:
+      - pagina: 35
+        trecho: Vamos ampliar as Escolas Cívico-Militares
+  - id: voucher-educacional
+    tema: educacao
+    plano: flavio
+    assunto: Voucher para escola privada quando faltar vaga na rede pública
+    citacoes:
+      - pagina: 36
+        trecho: onde faltar vaga na rede pública, a família receberá um voucher educacional para matricular o filho em outra escola
+  - id: cotas
+    tema: direitos
+    plano: lula
+    assunto: Continuidade das cotas raciais no serviço público
+    citacoes:
+      - pagina: 19
+        trecho: alinhadas à política de cotas no serviço público que aprimoramos no atual mandato
+  - id: lgbt
+    tema: direitos
+    plano: lula
+    assunto: Políticas públicas específicas para a população LGBTQIAP+
+    citacoes:
+      - pagina: 23
+        trecho: atender, de forma adequada, justa e inclusiva, às pessoas LGBTQIAP+
+  - id: esporte-feminino
+    tema: direitos
+    plano: flavio
+    assunto: Categoria feminina no esporte restrita a atletas do sexo feminino
+    citacoes:
+      - pagina: 41
+        trecho: Vamos assegurar que a categoria feminina, da base ao alto rendimento, seja disputada por atletas do sexo feminino
+  - id: salario-minimo
+    tema: economia
+    plano: lula
+    assunto: Continuidade da política de valorização do salário mínimo
+    citacoes:
+      - pagina: 74
+        trecho: dará continuidade à política de valorização do salário mínimo
+  - id: fim-reeleicao
+    tema: governanca
+    plano: flavio
+    assunto: Fim da reeleição para presidente
+    citacoes:
+      - pagina: 66
+        trecho: E propomos o fim da reeleição para o cargo de Presidente da República.
+  - id: licenca-automatica
+    tema: agraria
+    plano: flavio
+    assunto: Licença ambiental concedida automaticamente se o órgão não decidir no prazo
+    citacoes:
+      - pagina: 50
+        trecho: Se não decidir nem se manifestar dentro desse prazo, a licença deve ser concedida
+  - id: fracking
+    tema: agraria
+    plano: flavio
+    assunto: Permissão para exploração de gás de xisto por fracking
+    citacoes:
+      - pagina: 52
+        trecho: permitir a exploração do gás não convencional (fracking) com responsabilidade ambiental
+  - id: mercosul
+    tema: externa
+    plano: lula
+    assunto: Mercosul como principal plataforma de integração regional
+    citacoes:
+      - pagina: 80
+        trecho: Consolidaremos o Mercosul como principal plataforma de integração econômica, produtiva, política e social da América do Sul.
+  - id: ocde
+    tema: externa
+    plano: flavio
+    assunto: Retomada da adesão do Brasil à OCDE
+    citacoes:
+      - pagina: 63
+        trecho: O passo mais urgente é retomar o cronograma interrompido de adesão à OCDE
+
+consenso:
+  - id: sus-rede-privada
+    tema: saude
+    assunto: SUS contratar hospitais e clínicas privadas para exames e cirurgias
+    lula:
+      - pagina: 37
+        trecho: Daremos continuidade à parceria com hospitais privados para assegurar, em troca de créditos financeiros ou de dívidas, a oferta de exames e cirurgias para o SUS.
+    flavio:
+      - pagina: 37
+        trecho: vamos contratar serviços e exames na rede privada nos horários ociosos
+  - id: programas-sociais
+    tema: saude
+    assunto: Manter os programas sociais existentes
+    lula:
+      - pagina: 18
+        trecho: devemos manter, aperfeiçoar e ampliar as políticas de proteção social para quem mais necessita
+    flavio:
+      - pagina: 42
+        trecho: vamos manter os programas sociais existentes
+  - id: tempo-integral
+    tema: educacao
+    assunto: Expandir a escola em tempo integral
+    lula:
+      - pagina: 31
+        trecho: O fomento à expansão da educação em tempo integral terá absoluta prioridade no novo mandato.
+    flavio:
+      - pagina: 35
+        trecho: Apoiamos a escola em tempo integral
+  - id: monitoramento-agressores
+    tema: seguranca
+    assunto: Monitoramento eletrônico de agressores de mulheres
+    lula:
+      - pagina: 21
+        trecho: vamos adquirir e distribuir aos Estados kits para aprimorar o monitoramento de agressores
+    flavio:
+      - pagina: 14
+        trecho: serão monitorados pelas autoridades com o uso de tornozeleiras eletrônicas
+
+  - id: isolamento-liderancas
+    tema: seguranca
+    assunto: Isolar líderes de facções criminosas
+    lula:
+      - pagina: 28
+        trecho: ampliando sua capacidade operacional e de isolamento de lideranças criminosas
+    flavio:
+      - pagina: 14
+        trecho: Chefes de quadrilha e marginais de alta periculosidade serão tirados de circulação e isolados.
+  - id: vacinas
+    tema: saude
+    assunto: Manter e ampliar a vacinação pelo SUS
+    lula:
+      - pagina: 37
+        trecho: Continuaremos incorporando novas vacinas ao calendário do SUS
+    flavio:
+      - pagina: 37
+        trecho: manter a imunização e o incentivo à produção nacional de vacinas
+  - id: idosos-longa-permanencia
+    tema: direitos
+    assunto: Ampliar as instituições de longa permanência para idosos
+    lula:
+      - pagina: 22
+        trecho: Seguiremos apoiando a ampliação das vagas públicas em Instituições de Longa Permanência
+    flavio:
+      - pagina: 39
+        trecho: vamos ampliar as instituições de longa permanência para idosos
+  - id: cultura-desconcentracao
+    tema: educacao
+    assunto: Levar os recursos das leis de incentivo à cultura para outras regiões
+    lula:
+      - pagina: 41
+        trecho: Vamos avançar ainda mais na desconcentração regional
+    flavio:
+      - pagina: 41
+        trecho: aperfeiçoaremos as leis de incentivo, corrigindo distorções e favorecendo o desenvolvimento de outros polos regionais
+
+lado_a_lado:
+  - id: vida-direitos-reprodutivos
+    tema: direitos
+    assunto: Vida desde a concepção e direitos reprodutivos
+    nota: Nenhum dos planos usa a palavra "aborto". Mostramos o que cada um diz, sem atribuir posição.
+    lula:
+      - pagina: 21
+        trecho: garantir os direitos sexuais e reprodutivos
+    flavio:
+      - pagina: 9
+        trecho: à vida desde a concepção

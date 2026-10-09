@@ -1,0 +1,44 @@
+{
+  "name": "confere-o-plano",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "pnpm validar && astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "vitest run",
+    "validar": "node scripts/validar-citacoes.mjs",
+    "e2e": "playwright test",
+    "imagem": "node scripts/gerar-imagem-compartilhar.mjs"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.64.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^22.20.5",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.7",
+    "wrangler": "^4.149.0",
+    "yaml": "^2.9.1"
+  },
+  "dependencies": {
+    "@astrojs/svelte": "^7.2.5",
+    "astro": "^5.18.2",
+    "svelte": "^5.57.2",
+    "zod": "^3.25.76"
+  },
+  "packageManager": "pnpm@10.28.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "workerd"
+    ],
+    "ignoredBuiltDependencies": [
+      "sharp"
+    ]
+  }
+}

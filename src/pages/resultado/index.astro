@@ -1,0 +1,9 @@
+---
+import Resultado from '../../components/Resultado.svelte';
+import Base from '../../layouts/Base.astro';
+import { informativo, perguntas, planos, temas } from '../../lib/dados';
+---
+
+<Base titulo="Resultado · Confere o Plano" indexar={false}>
+  <Resultado client:load {perguntas} {temas} {informativo} {planos} base={import.meta.env.BASE_URL} />
+</Base>

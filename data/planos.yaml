@@ -1,0 +1,16 @@
+lula:
+  partido: PT
+  arquivo: data/pdf/proposta-pt.pdf
+  url: https://www.tse.jus.br/eleicoes/eleicoes-2026-content/arquivos/proposta-pt/@@display-file/file/proposta-pt.pdf
+  pagina_tse: https://www.tse.jus.br/eleicoes/eleicoes-2026-content/propostas-de-governo-dos-candidatos-ao-cargo-de-presidente-da-republica-eleicoes-2026/lula-propostas-de-governo
+  paginas: 84
+  sha256: e1c162c20c81dafadf69b10bab230b5a6dc48f6b6c27c2cfce853b131a8bcc36
+  consultado_em: '2026-10-09'
+flavio:
+  partido: PL
+  arquivo: data/pdf/proposta-pl.pdf
+  url: https://www.tse.jus.br/eleicoes/eleicoes-2026-content/arquivos/proposta-pl/@@display-file/file/proposta-pl.pdf
+  pagina_tse: https://www.tse.jus.br/eleicoes/eleicoes-2026-content/propostas-de-governo-dos-candidatos-ao-cargo-de-presidente-da-republica-eleicoes-2026/flavio-bolsonaro
+  paginas: 76
+  sha256: 7d1d95075e11e3c4113e8dcd502438049a34f5147a84cb0f746bf59046e477a4
+  consultado_em: '2026-10-09'

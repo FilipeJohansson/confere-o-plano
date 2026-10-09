@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+
+/* Claro por padrão; escuro só quando a pessoa escolhe (data-theme="dark" em <html>, ver src/lib/tema.ts). */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+@layer base {
+  html,
+  body {
+    @apply bg-white text-base text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+  }
+
+  [data-theme='dark'] {
+    color-scheme: dark;
+  }
+
+  /* Links para âncoras na mesma página (ex.: "Onde nenhum plano ficou perto de você") rolam suavemente,
+     exceto para quem pediu menos animação no sistema. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* O Tailwind v4 tira o cursor de mãozinha dos botões; tudo que é clicável volta a ter. */
+  button:not(:disabled),
+  [role='button']:not([aria-disabled='true']),
+  summary {
+    cursor: pointer;
+  }
+}

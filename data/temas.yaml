@@ -1,0 +1,19 @@
+# As 8 categorias usadas pelo TSE para indexar os dois planos.
+# O TSE usa nomes ligeiramente diferentes em alguns itens para cada candidato
+# (ex.: "Educação" vs "Educação, Ciência e Meio Ambiente"); usamos a forma comum.
+- id: economia
+  nome: Economia, Trabalho e Responsabilidade Fiscal
+- id: saude
+  nome: Saúde Pública e Assistência
+- id: seguranca
+  nome: Segurança Pública
+- id: educacao
+  nome: Educação
+- id: externa
+  nome: Política Externa e Inserção Global
+- id: direitos
+  nome: Direitos Humanos, Equidade e Inclusão Social
+- id: agraria
+  nome: Questão Agrária e Meio Ambiente
+- id: governanca
+  nome: Governança, Transparência e Reformas de Estado

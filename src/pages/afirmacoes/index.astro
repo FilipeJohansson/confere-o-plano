@@ -1,0 +1,52 @@
+---
+import CartaoAfirmacao from '../../components/CartaoAfirmacao.svelte';
+import SecoesInformativas from '../../components/SecoesInformativas.svelte';
+import Base from '../../layouts/Base.astro';
+import { informativo, perguntas, planos, temas } from '../../lib/dados';
+
+const base = import.meta.env.BASE_URL;
+const temasComPergunta = temas
+  .map((t) => ({ ...t, perguntas: perguntas.filter((p) => p.tema === t.id) }))
+  .filter((t) => t.perguntas.length);
+---
+
+<Base
+  titulo="Todas as afirmações · Confere o Plano"
+  descricao="As afirmações do questionário com a posição de cada plano de governo do 2º turno de 2026 e os trechos e páginas que a justificam."
+>
+  <div class="flex flex-col gap-12">
+    <header class="flex flex-col gap-3">
+      <h1 class="text-3xl font-semibold text-balance">Todas as afirmações</h1>
+      <p class="text-slate-700 dark:text-slate-300">
+        As {perguntas.length} afirmações do questionário, com a posição atribuída a cada plano e os trechos que a justificam.
+        Cada link de página abre o PDF oficial no site do TSE.
+      </p>
+      <p class="text-sm text-slate-600 dark:text-slate-400">
+        Se ainda não respondeu, considere <a class="font-medium text-slate-900 underline underline-offset-4 dark:text-slate-100" href={`${base}quiz/`}>fazer o questionário</a>
+        antes: lá os nomes dos candidatos não aparecem, para não influenciar as respostas.
+      </p>
+      <nav aria-label="Temas" class="flex flex-wrap gap-2 text-sm">
+        {
+          temasComPergunta.map((t) => (
+            <a class="rounded-full px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100 dark:ring-slate-700 dark:hover:bg-slate-900" href={`#tema-${t.id}`}>
+              {t.nome}
+            </a>
+          ))
+        }
+      </nav>
+    </header>
+
+    {
+      temasComPergunta.map((t) => (
+        <section class="flex scroll-mt-4 flex-col gap-4" id={`tema-${t.id}`}>
+          <h2 class="text-xl font-semibold">{t.nome}</h2>
+          {t.perguntas.map((p) => (
+            <CartaoAfirmacao pergunta={p} {planos} />
+          ))}
+        </section>
+      ))
+    }
+
+    <SecoesInformativas {temas} {informativo} {planos} />
+  </div>
+</Base>
