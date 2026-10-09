@@ -109,6 +109,7 @@ for (let n = 1; n <= EXECUCOES; n++) {
       const respondidas = perguntas.filter((p) => respostas[p.id] !== null);
       const puladas = perguntas.length - respondidas.length;
 
+      const percentuais: Record<string, string> = {};
       if (respondidas.length === 0) {
         await expect(page.getByRole('heading', { name: 'Nenhuma afirmação respondida' })).toBeVisible();
       } else {
@@ -117,7 +118,8 @@ for (let n = 1; n <= EXECUCOES; n++) {
           const media =
             respondidas.reduce((s, p) => s + 1 - Math.abs(respostas[p.id]! - p.posicoes[plano].valor) / 4, 0) /
             respondidas.length;
-          await expect(page.locator(`[data-geral="${plano}"] [data-pct]`)).toHaveText(`${Math.round(media * 100)}%`);
+          percentuais[plano] = `${Math.round(media * 100)}%`;
+          await expect(page.locator(`[data-geral="${plano}"] [data-pct]`)).toHaveText(percentuais[plano]);
         }
 
         const plural = (q: number, um: string, varios: string) => `${q} ${q === 1 ? um : varios}`;
@@ -130,13 +132,16 @@ for (let n = 1; n <= EXECUCOES; n++) {
         await expect(page.locator('article')).toHaveCount(respondidas.length);
       }
 
-      // "Compartilhar" gera o link com as respostas (forçado pelo caminho da área de transferência).
+      // "Compartilhar" copia a mensagem com os percentuais e o link com as respostas (caminho da área de
+      // transferência, já que o teste desliga o menu de compartilhar do sistema).
       if (respondidas.length > 0) {
         await page.getByRole('button', { name: 'Compartilhar resultado' }).click();
-        await expect(page.getByRole('button', { name: 'Link copiado!' })).toBeVisible();
-        const link = await page.evaluate(() => navigator.clipboard.readText());
-        log.push(`Link compartilhado: ${link}`);
-        if (!link.endsWith(`/resultado/#r=${esperado}`)) await falhar('O link compartilhado não contém as respostas dadas.');
+        await expect(page.getByRole('button', { name: 'Mensagem copiada!' })).toBeVisible();
+        const mensagem = await page.evaluate(() => navigator.clipboard.readText());
+        log.push(`Mensagem compartilhada: ${mensagem}`);
+        if (!mensagem.endsWith(`/resultado/#r=${esperado}`)) await falhar('O link compartilhado não contém as respostas dadas.');
+        if (!mensagem.includes(`Lula (${percentuais.lula})`) || !mensagem.includes(`Flávio Bolsonaro (${percentuais.flavio})`))
+          await falhar('A mensagem compartilhada não traz os mesmos percentuais da tela.');
       }
 
       // Contagem de acessos: o resultado de quem acabou de responder conta como "concluido",
