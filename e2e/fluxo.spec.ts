@@ -205,3 +205,24 @@ test('robots.txt e sitemap.xml listam só as páginas indexáveis', async ({ req
   for (const p of ['/', '/quiz/', '/afirmacoes/', '/sobre/']) expect(sitemap).toContain(`<loc>https://confereoplano.com.br${p}</loc>`);
   expect(sitemap).not.toContain('resultado');
 });
+
+test('o texto de cada botão de resposta cabe dentro do botão, do celular pequeno ao desktop', async ({ page }) => {
+  await page.goto('/quiz/');
+  await expect(page.getByText(/^1 de \d+$/)).toBeVisible();
+  const grupo = page.getByRole('group', { name: 'Sua resposta' });
+  for (const largura of [320, 360, 390, 414, 640, 768, 1024, 1280]) {
+    await page.setViewportSize({ width: largura, height: 900 });
+    const vazamentos = await grupo.evaluate((g) =>
+      [...g.querySelectorAll('button')].flatMap((botao) => {
+        const b = botao.getBoundingClientRect();
+        // Mede o texto em si (não a caixa do span), que é o que transborda quando uma palavra não cabe.
+        const intervalo = document.createRange();
+        intervalo.selectNodeContents(botao.querySelector('span:last-child')!);
+        const t = intervalo.getBoundingClientRect();
+        const dentro = t.left >= b.left - 0.5 && t.right <= b.right + 0.5 && t.top >= b.top - 0.5 && t.bottom <= b.bottom + 0.5;
+        return dentro ? [] : [botao.textContent!.trim()];
+      }),
+    );
+    expect(vazamentos, `largura ${largura}px`).toEqual([]);
+  }
+});

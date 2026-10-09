@@ -53,8 +53,9 @@ const PASSOS = [
         <p class="text-sm text-slate-600 dark:text-slate-400">Leva cerca de 5 minutos. Os nomes dos candidatos só aparecem no resultado.</p>
       </div>
 
-      {/* Amostra decorativa de como é o questionário (a primeira afirmação, sem interação). */}
-      <div class="cartao relative flex flex-col gap-5 p-6 sm:p-8" aria-hidden="true">
+      {/* Amostra decorativa de como é o questionário (a primeira afirmação, sem interação). Some no celular, onde
+          os cinco botões não cabem lado a lado e a amostra só empurraria o conteúdo para baixo. */}
+      <div class="cartao relative hidden flex-col gap-5 p-6 sm:flex sm:p-8" aria-hidden="true">
         <div class="flex items-center justify-between text-xs font-medium text-slate-500 dark:text-slate-400">
           <span>{temas.find((t) => t.id === exemplo.tema)?.nome}</span>
           <span>1 de {perguntas.length}</span>
