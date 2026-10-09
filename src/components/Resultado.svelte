@@ -156,7 +156,7 @@
         </div>
         <h1 class="text-3xl font-bold tracking-tight text-balance sm:text-4xl">{manchete}</h1>
         <p class="text-sm text-slate-600 dark:text-slate-400">
-          Isto não é uma recomendação de voto. O resultado mede o quanto suas respostas concordam com o que cada plano diz
+          <strong class="font-semibold text-slate-900 dark:text-slate-100">Isto não é uma recomendação de voto.</strong> O resultado mede o quanto suas respostas concordam com o que cada plano diz
           em {perguntas.length} afirmações, não a qualidade dos planos nem dos candidatos.
           <a class="font-medium text-slate-900 underline underline-offset-4 dark:text-slate-100" href="{base}sobre/">Como funciona</a>
         </p>
