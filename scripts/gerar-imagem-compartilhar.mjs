@@ -7,15 +7,16 @@ const html = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><sty
   * { margin: 0; box-sizing: border-box; }
   body { width: 1200px; height: 630px; font-family: ui-sans-serif, system-ui, sans-serif; color: #0f172a; background: #fff;
          display: flex; flex-direction: column; justify-content: space-between; padding: 64px 80px; }
-  .marca { font-size: 34px; font-weight: 700; }
+  .marca { font-size: 34px; font-weight: 700; display: flex; align-items: center; gap: 16px; }
+  .icone { width: 56px; height: 56px; border-radius: 14px; background: #0f172a; display: grid; place-items: center; }
   h1 { font-size: 62px; line-height: 1.12; font-weight: 700; letter-spacing: -0.02em; max-width: 1000px; text-wrap: balance; }
-  p { font-size: 30px; color: #475569; margin-top: 20px; }
+  p { font-size: 30px; color: #475569; margin-top: 20px; text-wrap: balance; }
   .info { font-size: 26px; color: #475569; }
 </style></head><body>
-  <div class="marca">Confere o Plano</div>
+  <div class="marca"><span class="icone"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>Confere o Plano</div>
   <div>
-    <h1>Qual plano de governo do 2º turno combina mais com o que você pensa?</h1>
-    <p>Com o trecho e a página de cada plano registrado no TSE.</p>
+    <h1>Com qual plano de governo você concorda mais?</h1>
+    <p>Responda e confira nas fontes: o trecho e a página de cada plano registrado no TSE.</p>
   </div>
   <div class="info">Eleições 2026 · 2º turno</div>
 </body></html>`;

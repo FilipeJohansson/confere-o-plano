@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { textoCompartilhar } from '../lib/compartilhar';
   import { CHAVE_RESULTADO, decodificar } from '../lib/encode';
   import { NOME_PLANO, POSICAO_PLANO, opcao, pct } from '../lib/rotulos';
   import { PLANOS, type PlanoId } from '../lib/planos';
@@ -89,11 +90,14 @@
   const temasComPergunta = $derived(temas.filter((t) => resultado?.porTema[t.id]));
   const temasSemPergunta = $derived(temas.filter((t) => !perguntas.some((p) => p.tema === t.id)));
 
+  // Vai uma mensagem em primeira pessoa com os percentuais, montada aqui no navegador, mais o link do resultado.
   async function compartilhar() {
+    if (!resultado?.geral) return;
     const url = `${location.origin}${base}resultado/#r=${codigoAtual}`;
+    const text = textoCompartilhar(resultado.geral);
     try {
-      if (navigator.share) return await navigator.share({ title: 'Meu resultado no Confere o Plano', url });
-      await navigator.clipboard.writeText(url);
+      if (navigator.share) return await navigator.share({ title: 'Meu resultado no Confere o Plano', text, url });
+      await navigator.clipboard.writeText(`${text}\n\n${url}`);
       copiado = true;
       setTimeout(() => (copiado = false), 2500);
     } catch {}
@@ -171,14 +175,15 @@
       </div>
       <div class="flex flex-wrap gap-3">
         <button type="button" class="botao-primario" onclick={compartilhar}>
-          {copiado ? 'Link copiado!' : 'Compartilhar resultado'}
+          {copiado ? 'Mensagem copiada!' : 'Compartilhar resultado'}
         </button>
         <a class="botao-secundario" href="{base}quiz/">
           Refazer
         </a>
       </div>
       <p class="text-xs text-slate-600 dark:text-slate-400">
-        O link compartilhado contém as suas respostas: quem abrir verá como você respondeu cada afirmação.
+        Compartilhar envia uma mensagem com os seus percentuais e um link que contém as suas respostas: quem abrir verá
+        como você respondeu cada afirmação. Você pode editar a mensagem antes de enviar.
       </p>
     </section>
 
