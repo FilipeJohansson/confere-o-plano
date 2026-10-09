@@ -100,34 +100,48 @@
   }
 </script>
 
-{#snippet barra(plano: PlanoId, valor: number, grande = false)}
+{#snippet barra(plano: PlanoId, valor: number)}
   <div class="flex items-center gap-3">
-    <span class="w-32 shrink-0 text-sm font-medium sm:w-40 {NOME_PLANO[plano].cor}">
-      {NOME_PLANO[plano].nome} <span class="font-normal text-slate-500 dark:text-slate-400">({NOME_PLANO[plano].partido})</span>
-    </span>
-    <div class="h-3 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800 {grande ? 'h-4' : ''}">
+    <span class="w-28 shrink-0 text-sm font-medium sm:w-36 {NOME_PLANO[plano].cor}">{NOME_PLANO[plano].nome}</span>
+    <div class="h-2.5 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800">
       <div class="h-full rounded-full {NOME_PLANO[plano].barra}" style="width: {valor * 100}%"></div>
     </div>
-    <span class="w-12 text-right font-semibold tabular-nums {grande ? 'text-lg' : 'text-sm'}">{pct(valor)}</span>
+    <span class="w-12 text-right text-sm font-semibold tabular-nums">{pct(valor)}</span>
+  </div>
+{/snippet}
+
+<!-- Linha de destaque do resultado geral: nome, percentual grande e barra grossa. -->
+{#snippet barraGeral(plano: PlanoId, valor: number)}
+  <div class="flex flex-col gap-2" data-geral={plano}>
+    <div class="flex items-end justify-between gap-3">
+      <div>
+        <p class="text-lg font-bold {NOME_PLANO[plano].cor}">{NOME_PLANO[plano].nome}</p>
+        <p class="text-xs text-slate-500 dark:text-slate-400">{NOME_PLANO[plano].partido} · plano registrado no TSE</p>
+      </div>
+      <span class="text-4xl font-bold tracking-tight tabular-nums" data-pct>{pct(valor)}</span>
+    </div>
+    <div class="h-3.5 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800">
+      <div class="h-full rounded-full {NOME_PLANO[plano].barra}" style="width: {valor * 100}%"></div>
+    </div>
   </div>
 {/snippet}
 
 {#if invalido}
-  <div class="flex flex-col gap-4">
-    <h1 class="text-2xl font-semibold">Resultado não encontrado</h1>
+  <div class="cartao mx-auto flex max-w-3xl flex-col gap-4 p-6 sm:p-8">
+    <h1 class="text-2xl font-bold">Resultado não encontrado</h1>
     <p class="text-slate-700 dark:text-slate-300">
       O resultado fica guardado só na aba do navegador em que você respondeu. Se você abriu um link compartilhado, ele
       está incompleto ou é de uma versão anterior das perguntas.
     </p>
-    <a class="self-start rounded-lg bg-slate-900 px-4 py-2 font-semibold text-white dark:bg-white dark:text-slate-900" href="{base}quiz/">
+    <a class="botao-primario self-start" href="{base}quiz/">
       Responder o questionário
     </a>
   </div>
 {:else if resultado && !resultado.geral}
-  <div class="flex flex-col gap-4">
-    <h1 class="text-2xl font-semibold">Nenhuma afirmação respondida</h1>
+  <div class="cartao mx-auto flex max-w-3xl flex-col gap-4 p-6 sm:p-8">
+    <h1 class="text-2xl font-bold">Nenhuma afirmação respondida</h1>
     <p class="text-slate-700 dark:text-slate-300">Você pulou todas as afirmações, então não há como calcular o alinhamento.</p>
-    <a class="self-start rounded-lg bg-slate-900 px-4 py-2 font-semibold text-white dark:bg-white dark:text-slate-900" href="{base}quiz/">
+    <a class="botao-primario self-start" href="{base}quiz/">
       Tentar de novo
     </a>
   </div>
@@ -135,31 +149,31 @@
   {@const geral = resultado.geral}
   <div class="flex flex-col gap-12">
     <section class="flex flex-col gap-5">
-      <div class="flex flex-col gap-2">
-        <h1 class="text-3xl font-semibold text-balance">{manchete}</h1>
+      <div class="flex flex-col gap-3">
+        <div class="flex flex-wrap gap-2">
+          <span class="etiqueta">Seu resultado</span>
+          <span class="etiqueta">{resumoRespostas}</span>
+        </div>
+        <h1 class="text-3xl font-bold tracking-tight text-balance sm:text-4xl">{manchete}</h1>
         <p class="text-sm text-slate-600 dark:text-slate-400">
           Isto não é uma recomendação de voto. O resultado mede o quanto suas respostas concordam com o que cada plano diz
           em {perguntas.length} afirmações, não a qualidade dos planos nem dos candidatos.
           <a class="font-medium text-slate-900 underline underline-offset-4 dark:text-slate-100" href="{base}sobre/">Como funciona</a>
         </p>
       </div>
-      <div class="flex flex-col gap-3 rounded-2xl border border-slate-200 p-4 dark:border-slate-800">
+      <div class="cartao flex flex-col gap-6 p-5 sm:p-7">
         {#each PLANOS as p (p)}
-          {@render barra(p, geral[p], true)}
+          {@render barraGeral(p, geral[p])}
         {/each}
-        <p class="text-xs text-slate-600 dark:text-slate-400">
+        <p class="border-t border-slate-200 pt-4 text-xs text-slate-600 dark:border-slate-800 dark:text-slate-400">
           Concordância média com cada plano em {resumoRespostas}. Os percentuais são independentes e não somam 100%.
         </p>
       </div>
       <div class="flex flex-wrap gap-3">
-        <button
-          type="button"
-          class="rounded-lg bg-slate-900 px-4 py-2 font-semibold text-white dark:bg-white dark:text-slate-900"
-          onclick={compartilhar}
-        >
+        <button type="button" class="botao-primario" onclick={compartilhar}>
           {copiado ? 'Link copiado!' : 'Compartilhar resultado'}
         </button>
-        <a class="rounded-lg px-4 py-2 font-semibold text-slate-800 ring-1 ring-slate-300 dark:text-slate-200 dark:ring-slate-700" href="{base}quiz/">
+        <a class="botao-secundario" href="{base}quiz/">
           Refazer
         </a>
       </div>
@@ -169,19 +183,23 @@
     </section>
 
     <section class="flex flex-col gap-4">
-      <h2 class="text-xl font-semibold">Por tema</h2>
-      {#each temasComPergunta as t (t.id)}
-        {@const dados = resultado.porTema[t.id]}
-        <div class="flex flex-col gap-2">
-          <h3 class="text-sm font-semibold">
-            {t.nome}
-            <span class="font-normal text-slate-500 dark:text-slate-400">· {dados.respondidas} {dados.respondidas === 1 ? 'afirmação' : 'afirmações'}</span>
-          </h3>
-          {#each PLANOS as p (p)}
-            {@render barra(p, dados.alinhamento[p])}
-          {/each}
-        </div>
-      {/each}
+      <h2 class="titulo-secao">Por tema</h2>
+      <div class="grid gap-4 md:grid-cols-2">
+        {#each temasComPergunta as t (t.id)}
+          {@const dados = resultado.porTema[t.id]}
+          <div class="cartao flex flex-col gap-3 p-4">
+            <div class="flex items-start justify-between gap-3">
+              <h3 class="text-sm font-bold">{t.nome}</h3>
+              <span class="etiqueta shrink-0 whitespace-nowrap">
+                {dados.respondidas} {dados.respondidas === 1 ? 'afirmação' : 'afirmações'}
+              </span>
+            </div>
+            {#each PLANOS as p (p)}
+              {@render barra(p, dados.alinhamento[p])}
+            {/each}
+          </div>
+        {/each}
+      </div>
       {#if temasSemPergunta.length}
         <p class="text-sm text-slate-600 dark:text-slate-400">
           Sem afirmações que pontuam: {temasSemPergunta.map((t) => t.nome).join('; ')}. Nesses temas os planos tratam de
@@ -193,7 +211,7 @@
     {#if longeDeAmbos.length}
       <section class="flex flex-col gap-4">
         <div>
-          <h2 class="text-xl font-semibold">Onde nenhum plano ficou perto de você</h2>
+          <h2 class="titulo-secao">Onde nenhum plano ficou perto de você</h2>
           <p class="text-sm text-slate-600 dark:text-slate-400">
             Afirmações em que a sua resposta ficou a duas posições ou mais da escala de distância dos dois planos. Por
             exemplo: você ficou neutro e os planos, em lados opostos.
@@ -201,7 +219,7 @@
         </div>
         <ul class="flex flex-col gap-3">
           {#each longeDeAmbos as d (d.pergunta.id)}
-            <li class="flex flex-col gap-1.5 rounded-xl bg-slate-50 p-3 dark:bg-slate-900">
+            <li class="cartao flex flex-col gap-1.5 p-4">
               <a
                 class="text-sm font-semibold underline-offset-4 hover:underline"
                 href="#{d.pergunta.id}"
@@ -224,7 +242,7 @@
 
     <section class="flex flex-col gap-4">
       <div>
-        <h2 class="text-xl font-semibold">Por quê</h2>
+        <h2 class="titulo-secao">Por quê</h2>
         <p class="text-sm text-slate-600 dark:text-slate-400">
           Cada afirmação que você respondeu, com o que cada plano diz e onde. As primeiras são as que mais separaram os dois
           planos nas suas respostas.

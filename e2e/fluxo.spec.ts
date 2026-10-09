@@ -19,7 +19,7 @@ test('responde o quiz e vê o resultado com citações', async ({ page }, info) 
   // As respostas não ficam na URL (nem no histórico do navegador).
   await expect(page).toHaveURL(/\/resultado\/$/);
   await expect(page.getByRole('heading', { level: 1 })).toContainText(/mais próximas do plano|empatadas/);
-  await expect(page.getByText(`${total - 1} afirmações respondidas (1 pulada)`)).toBeVisible();
+  await expect(page.getByText(`${total - 1} afirmações respondidas (1 pulada)`, { exact: true })).toBeVisible();
 
   // Toda citação aponta para o PDF oficial do TSE na página certa.
   const links = page.locator('a[href*="tse.jus.br"][href*="#page="]');
@@ -79,20 +79,22 @@ test('tema claro por padrão, mesmo com o sistema em escuro; a escolha de escuro
   await page.emulateMedia({ colorScheme: 'dark' });
   await page.goto('/');
   const fundo = () => page.evaluate(() => getComputedStyle(document.body).backgroundColor);
-  expect(await fundo()).toBe('rgb(255, 255, 255)');
+  // Mesmo com o sistema em escuro, a página abre no tema claro.
+  await expect(page.locator('html')).not.toHaveAttribute('data-theme', 'dark');
+  const claro = await fundo();
 
   const botao = page.getByRole('button', { name: 'Tema escuro' });
   await temaPronto(page);
   await botao.click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-  expect(await fundo()).not.toBe('rgb(255, 255, 255)');
+  expect(await fundo()).not.toBe(claro);
 
   await page.goto('/quiz/');
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await temaPronto(page);
   await expect(page.getByRole('button', { name: 'Tema escuro' })).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', { name: 'Tema escuro' }).click();
-  expect(await fundo()).toBe('rgb(255, 255, 255)');
+  expect(await fundo()).toBe(claro);
 });
 
 test('rodapé fica no fim da tela em página curta', async ({ page }) => {

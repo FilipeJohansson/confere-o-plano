@@ -10,7 +10,7 @@
 
 <section class="flex flex-col gap-4">
   <div>
-    <h2 class="text-xl font-semibold">O que só um plano propõe</h2>
+    <h2 class="titulo-secao">O que só um plano propõe</h2>
     <p class="text-sm text-slate-600 dark:text-slate-400">
       Propostas que aparecem em apenas um dos planos. Não entram no cálculo, porque o outro plano não fala do assunto.
     </p>
@@ -19,9 +19,9 @@
     {@const itens = informativo.so_um_lado.filter((i) => i.tema === t.id)}
     {#if itens.length}
       <div class="flex flex-col gap-3">
-        <h3 class="text-sm font-semibold">{t.nome}</h3>
+        <h3 class="text-sm font-bold">{t.nome}</h3>
         {#each itens as item (item.id)}
-          <div class="flex flex-col gap-2 rounded-xl bg-slate-50 p-3 dark:bg-slate-900">
+          <div class="flex flex-col gap-2 cartao p-4">
             <p class="text-sm">
               <span class="font-semibold {NOME_PLANO[item.plano].cor}">{NOME_PLANO[item.plano].nome}:</span>
               {item.assunto}
@@ -38,7 +38,7 @@
 
 {#snippet comparados(itens: Informativo['consenso'])}
   {#each itens as item (item.id)}
-    <div class="flex flex-col gap-3 rounded-xl bg-slate-50 p-3 dark:bg-slate-900">
+    <div class="flex flex-col gap-3 cartao p-4">
       <p class="text-sm font-semibold">{item.assunto}</p>
       {#if item.nota}<p class="text-xs text-slate-600 dark:text-slate-400">{item.nota}</p>{/if}
       <div class="grid gap-3 sm:grid-cols-2">
@@ -57,7 +57,7 @@
 
 <section class="flex flex-col gap-4">
   <div>
-    <h2 class="text-xl font-semibold">Onde os planos concordam</h2>
+    <h2 class="titulo-secao">Onde os planos concordam</h2>
     <p class="text-sm text-slate-600 dark:text-slate-400">Pontos em que os dois propõem praticamente o mesmo.</p>
   </div>
   {@render comparados(informativo.consenso)}
@@ -65,7 +65,7 @@
 
 <section class="flex flex-col gap-4">
   <div>
-    <h2 class="text-xl font-semibold">Lado a lado</h2>
+    <h2 class="titulo-secao">Lado a lado</h2>
     <p class="text-sm text-slate-600 dark:text-slate-400">
       Temas sensíveis em que comparar exigiria interpretar o texto. Mostramos o que cada plano diz, sem pontuar.
     </p>

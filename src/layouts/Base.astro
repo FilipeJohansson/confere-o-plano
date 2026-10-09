@@ -20,6 +20,13 @@ const {
 const base = import.meta.env.BASE_URL;
 const canonica = new URL(Astro.url.pathname, Astro.site);
 const imagem = new URL(`${base}compartilhar.png`, Astro.site);
+
+const NAVEGACAO = [
+  { href: `${base}quiz/`, texto: 'Questionário' },
+  { href: `${base}afirmacoes/`, texto: 'Afirmações' },
+  { href: `${base}sobre/`, texto: 'Sobre' },
+];
+const atual = (href: string) => Astro.url.pathname.startsWith(href);
 ---
 
 <!doctype html>
@@ -79,28 +86,60 @@ const imagem = new URL(`${base}compartilhar.png`, Astro.site);
     }
   </head>
   <body class="flex min-h-dvh flex-col">
-    <header class="border-b border-slate-200 dark:border-slate-800">
-      <div class="mx-auto flex max-w-4xl items-center justify-between gap-4 px-4 py-2">
-        <a href={base} class="font-semibold">Confere o Plano</a>
-        <div class="flex items-center gap-3">
-          <span class="text-xs text-slate-500 dark:text-slate-400">Eleições 2026 · 2º turno</span>
+    <header class="sticky top-0 z-10 border-b border-slate-200 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
+      <div class="mx-auto flex max-w-5xl flex-wrap items-center gap-x-4 gap-y-2 px-4 py-2.5">
+        <a href={base} class="flex items-center gap-2 text-lg font-bold tracking-tight">
+          <span class="grid size-8 place-items-center rounded-lg bg-slate-900 text-white dark:bg-white dark:text-slate-900" aria-hidden="true">
+            <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></svg>
+          </span>
+          Confere o Plano
+        </a>
+        <div class="ml-auto flex items-center gap-1 sm:order-last sm:ml-0">
           <BotaoTema client:load />
         </div>
+        <nav class="order-last flex w-full gap-1 text-sm font-semibold sm:order-none sm:ml-auto sm:w-auto" aria-label="Principal">
+          {
+            NAVEGACAO.map((item) => (
+              <a
+                href={item.href}
+                aria-current={atual(item.href) ? 'page' : undefined}
+                class:list={[
+                  'rounded-lg px-3 py-1.5 transition',
+                  atual(item.href)
+                    ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
+                    : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800',
+                ]}
+              >
+                {item.texto}
+              </a>
+            ))
+          }
+        </nav>
       </div>
     </header>
-    <main class="mx-auto w-full max-w-4xl flex-1 px-4 py-8 sm:py-12">
+    <main class="mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:py-12">
       <slot />
     </main>
-    <footer class="mx-auto flex w-full max-w-4xl flex-col gap-2 px-4 pb-10 text-xs text-slate-500 dark:text-slate-400">
-      <nav class="flex flex-wrap gap-x-4 gap-y-1 font-medium text-slate-700 dark:text-slate-300" aria-label="Rodapé">
-        <a class="underline underline-offset-4" href={`${base}sobre/`}>Sobre e metodologia</a>
-        <a class="underline underline-offset-4" href={`${base}afirmacoes/`}>Todas as afirmações</a>
-        <a class="underline underline-offset-4" href={urlCorrecao()} target="_blank" rel="noopener">Reportar um erro</a>
-      </nav>
-      <p>
-      Projeto independente, sem vínculo com o TSE, candidatos ou partidos. Compara apenas os planos de governo registrados no TSE, não o histórico, as falas ou os votos dos candidatos. Suas
-      respostas nunca saem do seu navegador; contamos apenas visitas às páginas, de forma anônima e sem cookies.
-      </p>
+    <footer class="mt-8 bg-slate-900 text-slate-300 dark:border-t dark:border-slate-800">
+      <div class="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-10 sm:flex-row sm:justify-between">
+        <div class="flex max-w-sm flex-col gap-2">
+          <a href={base} class="text-lg font-bold text-white">Confere o Plano</a>
+          <p class="text-sm text-slate-400">
+            Projeto independente, sem vínculo com o TSE, candidatos ou partidos. Compara apenas os planos de governo
+            registrados no TSE, não o histórico, as falas ou os votos dos candidatos.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3 text-sm">
+          <nav class="flex flex-wrap gap-x-5 gap-y-2 font-medium" aria-label="Rodapé">
+            <a class="hover:text-white hover:underline hover:underline-offset-4" href={`${base}sobre/`}>Sobre e metodologia</a>
+            <a class="hover:text-white hover:underline hover:underline-offset-4" href={`${base}afirmacoes/`}>Todas as afirmações</a>
+            <a class="hover:text-white hover:underline hover:underline-offset-4" href={urlCorrecao()} target="_blank" rel="noopener">Reportar um erro</a>
+          </nav>
+          <p class="max-w-sm text-xs text-slate-400">
+            Suas respostas nunca saem do seu navegador; contamos apenas visitas às páginas, de forma anônima e sem cookies.
+          </p>
+        </div>
+      </div>
     </footer>
   </body>
 </html>

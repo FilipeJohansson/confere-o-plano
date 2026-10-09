@@ -24,12 +24,12 @@
   } = $props();
 </script>
 
-<article class="flex scroll-mt-4 flex-col gap-4 rounded-2xl border border-slate-200 p-4 dark:border-slate-800" id={pergunta.id}>
+<article class="cartao flex scroll-mt-32 flex-col gap-4 p-5" id={pergunta.id}>
   <div class="flex flex-col gap-2">
     {#if nomeTema}
-      <span class="text-xs font-medium tracking-wide text-slate-500 dark:text-slate-400 uppercase">{nomeTema}</span>
+      <span class="text-xs font-semibold tracking-wide text-slate-500 uppercase dark:text-slate-400">{nomeTema}</span>
     {/if}
-    <h3 class="font-semibold text-balance">{pergunta.afirmacao}</h3>
+    <h3 class="text-lg font-bold text-balance">{pergunta.afirmacao}</h3>
     {#if resposta !== undefined}
       {@const op = opcao(resposta)}
       <div>

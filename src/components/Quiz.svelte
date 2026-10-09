@@ -121,11 +121,11 @@
 <svelte:window onkeydown={teclado} />
 
 {#if atual}
-  <div class="flex flex-col gap-6">
+  <div class="cartao mx-auto flex max-w-3xl flex-col gap-6 p-5 sm:p-8">
     <div>
-      <div class="mb-2 flex items-baseline justify-between gap-4 text-sm text-slate-600 dark:text-slate-400">
-        <span class="font-medium">{nomeTema.get(atual.tema)}</span>
-        <span class="shrink-0 whitespace-nowrap tabular-nums">{indice + 1} de {ordem.length}</span>
+      <div class="mb-3 flex items-center justify-between gap-4 text-sm text-slate-600 dark:text-slate-400">
+        <span class="etiqueta">{nomeTema.get(atual.tema)}</span>
+        <span class="shrink-0 font-semibold whitespace-nowrap tabular-nums">{indice + 1} de {ordem.length}</span>
       </div>
       <div
         class="h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800"
@@ -165,8 +165,8 @@
         <button
           type="button"
           class="group flex flex-col items-center gap-2 rounded-xl border px-1 py-3 text-center transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 sm:px-2 sm:py-4 dark:focus-visible:outline-white {selecionado
-            ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900 dark:border-slate-100 dark:bg-slate-900 dark:ring-slate-100'
-            : 'border-slate-200 bg-white hover:border-slate-400 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:hover:border-slate-600 dark:hover:bg-slate-900'}"
+            ? 'border-slate-900 bg-white shadow-md ring-1 ring-slate-900 dark:border-slate-100 dark:bg-slate-800 dark:ring-slate-100'
+            : 'border-slate-200 bg-slate-50 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-white hover:shadow-md dark:border-slate-700 dark:bg-slate-950 dark:hover:border-slate-500 dark:hover:bg-slate-800'}"
           aria-pressed={selecionado}
           aria-keyshortcuts={String(i + 1)}
           onclick={() => responder(op.valor)}
@@ -230,5 +230,5 @@
     {/if}
   </div>
 {:else}
-  <p class="text-slate-600 dark:text-slate-400">Carregando…</p>
+  <p class="cartao mx-auto max-w-3xl p-8 text-slate-600 dark:text-slate-400">Carregando…</p>
 {/if}

@@ -6,7 +6,7 @@
 @layer base {
   html,
   body {
-    @apply bg-white text-base text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+    @apply bg-slate-50 text-base text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
   }
 
   [data-theme='dark'] {
@@ -27,4 +27,29 @@
   summary {
     cursor: pointer;
   }
+}
+
+/* Peças visuais comuns. Cores neutras de propósito: nada que lembre as cores das campanhas. */
+
+/* Bloco branco com borda e sombra leve sobre o fundo cinza. */
+@utility cartao {
+  @apply rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900;
+}
+
+/* Etiqueta em pílula (status, contagens). */
+@utility etiqueta {
+  @apply inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200 ring-inset dark:bg-slate-800 dark:text-slate-200 dark:ring-slate-700;
+}
+
+@utility botao-primario {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 font-semibold text-white shadow-sm transition hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200;
+}
+
+@utility botao-secundario {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-2.5 font-semibold text-slate-800 shadow-sm ring-1 ring-slate-300 transition ring-inset hover:bg-slate-50 dark:bg-slate-900 dark:text-slate-100 dark:ring-slate-700 dark:hover:bg-slate-800;
+}
+
+/* Título de seção: maior e mais pesado que o texto. */
+@utility titulo-secao {
+  @apply text-xl font-bold tracking-tight sm:text-2xl;
 }
